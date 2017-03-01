@@ -1,0 +1,24 @@
+# Rewrite old links to new ones
+
+AddDefaultCharset UTF-8
+Options +Indexes +FollowSymLinks
+DirectorySlash Off
+
+#
+# Setting rewrite rules
+#
+
+RewriteEngine On
+RewriteBase /
+
+# Redirect www.x to x
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+
+
+#RewriteRule ^/workout		/workouts [R=301,L,QSA]
+RewriteRule ^/workout$		/workouts [R=301,L,QSA]
+RewriteRule ^/dashboard		/workouts [R=301,L,QSA]
+
+#INVALID LINE HERE
