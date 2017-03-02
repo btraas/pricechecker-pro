@@ -7,7 +7,7 @@
 define( 'APP_MODE', 'PRICECHECKERPRO' );
 define( 'APP_NAME', 'Price Checker Pro');
 define( 'BASE_DOMAINNAME', "pricechecker.pro" );
-define( 'BASE_URL', "http://" . BASE_DOMAINNAME );
+define( 'BASE_URL', "https://" . BASE_DOMAINNAME );
 
 date_default_timezone_set( 'America/Vancouver' );
 
@@ -112,7 +112,7 @@ $authOptions = array(
 
 // Must site run over SSL, or is regular HTTP okay? {{{
 if( defined( 'STDIN' ) ) define( 'HTTPS_REQUIRED', false );		// If runnig from cmdline, HTTPS is NOT required  :)
-else define( 'HTTPS_REQUIRED', false ); 
+else define( 'HTTPS_REQUIRED', true ); 
 
 # Pages that don't require HTTPS
 $https_exceptions = array( 'barcode.php' );

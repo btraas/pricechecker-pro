@@ -8,6 +8,7 @@ require_once('lib/config.php');
 require_once('lib/db.php');
 require_once('lib/mdl.php');
 require_once('lib/auth.php');
+require_once('lib/app.php');
 
 
 //print_r(@$_REQUEST);

@@ -6,7 +6,7 @@
 	  
 <script>
 
-var user = <?php echo json_encode($user); ?>
+var user = <?php echo json_encode(@$user); ?>
 
 $.cookie('timezone', moment.tz.guess(), { expires: 7 });
 
@@ -46,45 +46,9 @@ $.cookie('timezone', moment.tz.guess(), { expires: 7 });
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--<?php echo $theme->color_main->base; ?>-800">
 
-          <a class="mdl-navigation__link" href="/workout">
+          <a class="mdl-navigation__link" href="/lookup">
 			<i class="mdl-color-text--<?php echo $theme->color_main->base; ?>-400 material-icons" 
-				role="presentation">home</i>Workout</a>
-
-          <a class="mdl-navigation__link" href="/progress">
-			<i class="mdl-color-text--<?php echo $theme->color_main->base; ?>-400 material-icons" 
-				role="presentation">trending_up</i>Progress</a>
-
-          <a class="mdl-navigation__link" href="/programs">
-			<i class="mdl-color-text--<?php echo $theme->color_main->base; ?>-400 material-icons" 
-				role="presentation">fitness_center</i>Programs</a>
-
-          <a class="mdl-navigation__link" href="/spam">
-			<i class="mdl-color-text--<?php echo $theme->color_main->base; ?>-400 material-icons" 
-				role="presentation">report</i>Spam</a>
-
-          <a class="mdl-navigation__link" href="/forums">
-			<i class="mdl-color-text--<?php echo $theme->color_main->base; ?>-400 material-icons" 
-				role="presentation">forum</i>Forums</a>
-
-          <a class="mdl-navigation__link" href="/updates">
-			<i class="mdl-color-text--<?php echo $theme->color_main->base; ?>-400 material-icons" 
-				role="presentation">flag</i>Updates</a>
-
-          <a class="mdl-navigation__link" href="/promos">
-			<i class="mdl-color-text--<?php echo $theme->color_main->base; ?>-400 material-icons" 
-				role="presentation">local_offer</i>Promos</a>
-
-          <a class="mdl-navigation__link" href="/purchases">
-			<i class="mdl-color-text--<?php echo $theme->color_main->base; ?>-400 material-icons" 
-				role="presentation">shopping_cart</i>Purchases</a>
-
-          <a class="mdl-navigation__link" href="/demo">
-			<i class="mdl-color-text--<?php echo $theme->color_main->base; ?>-400 material-icons" 
-				role="presentation">picture_in_picture</i>Demo</a>
-
-          <div class="mdl-layout-spacer"></div>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--<?php echo $theme->color_main->base; ?>-400 material-icons" 
-				role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
+				role="presentation">home</i>Lookup</a>
         </nav>
       </div>
 	  <script>

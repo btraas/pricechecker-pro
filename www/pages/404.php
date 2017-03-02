@@ -1,10 +1,10 @@
 <?php
 
-define("PAGE_NAME", "404: Page not found");
+if(empty(PAGE_NAME)) define("PAGE_NAME", "404: Page not found");
 
 ?>
 
-<?php include('inc/header.php'); ?>
+<?php include_once('inc/header.php'); ?>
 
 
 	<style>
@@ -58,10 +58,12 @@ define("PAGE_NAME", "404: Page not found");
 		<div class='info-box'>
 			<div class="mdl-shadow--2dp mdl-color--grey-100 mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
 			      <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-			        The page you are requesting (<?php echo $page; ?>) does not exist.
+					<?php	if(!empty($_404_msg)) echo $_404_msg;
+							else echo "The page you are requesting ($page) does not exist.";
+					?>
 			      </div>
 			      <div class="mdl-card__actions mdl-card--border">
-			        <a href="/dashboard" class="mdl-button mdl-js-button mdl-js-ripple-effect">Take me Home</a>
+			        <a href="/lookup" class="mdl-button mdl-js-button mdl-js-ripple-effect">Take me Home</a>
 			      </div>
 			</div>
 		</div>
@@ -72,4 +74,4 @@ define("PAGE_NAME", "404: Page not found");
 
 
 
-<?php include('inc/footer.php'); ?>
+<?php include_once('inc/footer.php'); ?>

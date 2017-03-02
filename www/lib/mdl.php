@@ -139,7 +139,7 @@ Class Button extends Element // {{{
 		parent::__construct($id);
 
 		// default but can be overriden
-		$this->addClass("mdl-color--white");
+		$this->addClass("mdl-button--raised");
 
 	} // }}}
 
@@ -165,6 +165,23 @@ EOF;
 
 
 } // }}}
+
+
+Class FabButton extends Button // {{{
+{
+	public function __construct($id) // {{{
+	{
+		parent::__construct($id);
+		$this->addClass("mdl-button--accent mdl-button--raised");
+	}
+
+	protected function getClass() // {{{
+    {
+		return "mdl-button--fab " . parent::getClass();
+	} // }}}
+
+}
+
 Abstract Class Input extends Element // {{{
 {
 	//protected $pattern;
@@ -176,6 +193,7 @@ Abstract Class Input extends Element // {{{
 	public function __construct($id) // {{{
 	{
 		parent::__construct($id);
+		$this->attr['placeholder'] = "";
 		$this->type = 'text';
 
 	} // }}}
@@ -218,20 +236,10 @@ Class NumberInput extends Input // {{{
 		parent::__construct($id);
 		$this->type					= 'number';
 		$this->pattern				= "-?[0-9]*(\.[0-9]+)?";
-		$this->attrplaceholder		= "Number...";
+		//$this->attrplaceholder		= "Number...";
 		$this->input_error			= "Not a number!";
 		$this->style				= "width: 50px";
 	} 
-} // }}}
-Class WeightInput extends NumberInput // {{{
-{
-	public function __construct($id)
-	{
-		parent::__construct($id);
-		//$this->pattern		= "-?[0-9]*(\.[0-9+])?((l|L)(b|B))|((k|K)(g|G))(s|s)?";
-		$this->placeholder		= "Weight...";
-		$this->input_error		= "Invalid weight";
-	}
 } // }}}
 
 Class Snackbar extends Element // {{{

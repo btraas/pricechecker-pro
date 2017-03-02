@@ -1,3 +1,6 @@
+<?php require_once('lib/config.php') ?>
+
+
 <!doctype html>
 <!--
   Material Design Lite
@@ -21,7 +24,7 @@
   
   <body>
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header class="mdl-layout__header mdl-color--<?php echo $theme->color_accent->base; ?>-800 mdl-color-text--grey-200">
+      <header class="mdl-layout__header mdl-color--<?php global $theme; echo $theme->color_accent->base; ?>-800 mdl-color-text--grey-200">
         <div class="mdl-layout__header-row">
           <span class="mdl-layout-title"><?php echo PAGE_NAME ?></span>
           <div class="mdl-layout-spacer"></div>
@@ -36,5 +39,5 @@
         </div>
       </header>
 	  <?php include('inc/menu.php'); ?>
-      <main class="mdl-layout__content mdl-color--grey-100">
+      <main class="mdl-layout__content mdl-color--grey-100 height: 100%;">
 		<div id='maincontent' style='margin: 10px;'>

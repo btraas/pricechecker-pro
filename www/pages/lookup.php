@@ -1,8 +1,10 @@
-<?php define("PAGE_NAME", "Workout"); ?>
+<?php define("PAGE_NAME", "Lookup"); ?>
 
 <?php 
 
-require_once('lib/program.php');
+define('USE_UPC_ITEM_DB', 1);
+
+//require_once('lib/program.php');
 
 //print_r($_REQUEST); 
 
@@ -11,32 +13,36 @@ $date = isset($_REQUEST['date']) ?
 	date('Y-m-d', strtotime($_REQUEST['date'])) :
 	date('Y-m-d');
 
-$userProgram = $user->getProgram();
+//$userProgram = $user->getProgram();
 //$program = empty($user->current_program) ? null : new PublicProgram($user->current_program);
 
-$week = getNumeric(@$_REQUEST['week']);
-$session = getNumeric(@$_REQUEST['session']);
+//$week = getNumeric(@$_REQUEST['week']);
+//$session = getNumeric(@$_REQUEST['session']);
 
 //$exercises = $userProgram->getExercises($week, $session);
 
 
+$product_name = "";
 $mode = getAlNumUC(@$_REQUEST['meta']);
 
 switch($mode) // {{{
 {
 
 	// Choose day
-    case ''         : include('inc/workout/index.php');     exit();
+    case ''         : include('inc/lookup/index.php');     exit();
 
 	// Choose session (unless already set for this day, then skip)
-	case 'NEW'		: include('inc/workout/new.php');		exit();
+	//case 'NEW'		: include('inc/workout/new.php');		exit();
 
 	// Choose Exercise
-	case 'SESSION'  : include('inc/workout/session.php');   exit();
+	//case 'SESSION'  : include('inc/workout/session.php');   exit();
 
+	case 'UPC'		: upc($_REQUEST['value']); exit();
+
+	case 'SCAN'		: include('inc/lookup/upc-scan.php'); exit();
 
 	case 'SAVE'     : save(); exit();
-	default			: _404();
+	default			: $_404_msg = "Unable to handle mode: $mode"; include('pages/404.php');
 
 } // }}}
 
@@ -53,7 +59,91 @@ function save() // {{{
 
 } // }}}
 
+function upc($upc) // {{{
+{
+	Global $product_name;
+	$NOT_FOUND = '<i>Not found!</i>';
 
+	$offers = array();
+	
+
+	$walmart_apikey = "w2qjxh4gg3szxqpnuz88bf4r";
+	$walmart = "http://api.walmartlabs.com/v1/items?apiKey=$walmart_apikey&upc=$upc";
+
+	$upcitemdb = "https://api.upcitemdb.com/prod/trial/lookup?upc=$upc";
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL, $walmart);
+	$results['walmart'] = json_decode(curl_exec($ch), true);
+	curl_close($ch);
+
+	$title = @$results['walmart']['items'][0]['name'];
+	//if(empty($title)) $title = $NOT_FOUND;
+	if(!empty($title)) $offers[] = array(	'merchant'	=> 'Walmart',
+						'title'		=> $title,
+						'price'		=> money_format('%i', @$results['walmart']['items'][0]['salePrice']),
+						'logo'		=> 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/New_Walmart_Logo.svg/2000px-New_Walmart_Logo.svg.png',
+						'link'		=> @$results['walmart']['items'][0]['productUrl'] );
+
+
+	if(!empty($title)) $product_name = $title;
+
+	$bestbuy_apikey = "1Zme8vP4bq4oc4HfXgqB3m2x";
+	$bestbuy = "https://api.bestbuy.com/v1/products(upc=$upc)?format=json&show=sku,name,salePrice&apiKey=$bestbuy_apikey";
+
+
+ 	$ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, $bestbuy);
+    $results['bestbuy'] = json_decode(curl_exec($ch), true);
+    curl_close($ch);
+
+	$bestbuy_item = @$results['bestbuy']['products'][0];
+
+    //if(empty($bestbuy_item)) $bestbuy_item = $NOT_FOUND;
+
+	if(!empty($bestbuy_item)) $offers[] = array(  'merchant'  => 'Best Buy',
+                        'title'     => $bestbuy_item,
+                        'price'     => @$results['bestbuy']['items'][0]['salePrice'],
+                        'logo'      => 'https://developer.bestbuy.com/images/bestbuy-logo.png',
+                        'link'      => 'https://developer.bestbuy.com' );
+
+
+
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL, $upcitemdb);
+
+	if(USE_UPC_ITEM_DB) {
+		$combined = json_decode(curl_exec($ch), true);
+
+		$tmpOffers = @$combined['items'][0]['offers'];
+		if(empty($tmpOffers)) $tmpOffers = array();
+
+		foreach($tmpOffers AS $offer) {
+			$offer['price'] = money_format('%i', $offer['price']);
+			if($offer['domain'] != 'walmart.com') $offers[] = $offer;
+
+		}
+
+	}
+
+	//ini_set("allow_url_fopen", 1);
+	//$json = file_get_contents($walmart);
+	//echo $json;
+
+	//echo $result;
+
+
+	include('inc/lookup/upc.php');
+
+
+} // }}}}
 
 ?>
 
