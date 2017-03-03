@@ -1,10 +1,12 @@
 <?php
 
+// Entry point for most web calls.
+
 ob_start();
 
 require_once('etc/config.php');
 require_once('lib/common.php');
-require_once('lib/config.php');
+
 require_once('lib/db.php');
 require_once('lib/mdl.php');
 require_once('lib/auth.php');

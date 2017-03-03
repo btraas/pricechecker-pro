@@ -1,5 +1,35 @@
 <?php
 
+/*
+
+	Author	Brayden Traas
+
+	PHP OO UI library based on MDL (https://getmdl.io).
+
+	Can be used to create consistent MDL colors, buttons, themes etc.
+
+
+	Element usage example: 
+	
+	// Create Element: 
+	$element = new MDL\NumberInput('dom-id-here');
+	
+	// Set HTML attributes (overrides defaults)
+	$element->value = '1234';
+	$element->style = 'width: 100%;';
+	$element->onkeyup = "if (event.keyCode == 13) alert('enter')";
+
+	// Generate HTML
+	echo $element->html;
+
+
+	// May be some specific values 
+	$btn = new MDL\Button('go');
+	$btn->text = "GO";			// Sets the <button></button> element's inner HTML
+
+
+*/
+
 Namespace MDL;
 
 $COLORS = array();
@@ -141,7 +171,7 @@ Class Button extends Element // {{{
 		// default but can be overriden
 		$this->addClass("mdl-button--raised");
 
-	} // }}}
+	} //}}}
 
 	// have permanent classes that the user can't remove via $button->class...
 	protected function getClass() // {{{
@@ -164,7 +194,7 @@ EOF;
 	} // }}}
 
 
-} // }}}
+} // }}} 
 
 
 Class FabButton extends Button // {{{
@@ -173,14 +203,14 @@ Class FabButton extends Button // {{{
 	{
 		parent::__construct($id);
 		$this->addClass("mdl-button--accent mdl-button--raised");
-	}
+	} // }}}
 
 	protected function getClass() // {{{
     {
 		return "mdl-button--fab " . parent::getClass();
 	} // }}}
 
-}
+} // }}}
 
 Abstract Class Input extends Element // {{{
 {

@@ -6,5 +6,5 @@ function logger($msg) {
 	else echo $msg;
 }
 
-require_once('lib/config.php');
+require_once('etc/config.php');
 ?>

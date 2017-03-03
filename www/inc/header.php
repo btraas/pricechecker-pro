@@ -1,4 +1,4 @@
-<?php require_once('lib/config.php') ?>
+<?php // require_once('etc/config.php') ?>
 
 
 <!doctype html>

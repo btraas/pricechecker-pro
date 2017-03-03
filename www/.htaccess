@@ -1,5 +1,7 @@
 # Rewrite old links to new ones
 
+#stuff here moved to /etc/apache2/sites-available/
+
 AddDefaultCharset UTF-8
 Options +Indexes +FollowSymLinks
 DirectorySlash Off
@@ -18,7 +20,4 @@ RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 
 
 #RewriteRule ^/workout		/workouts [R=301,L,QSA]
-RewriteRule ^/workout$		/workouts [R=301,L,QSA]
-RewriteRule ^/dashboard		/workouts [R=301,L,QSA]
 
-#INVALID LINE HERE

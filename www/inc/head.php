@@ -13,7 +13,7 @@
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Price Checker Pro">
+    <meta name="apple-mobile-web-app-title" content="<?php echo APP_NAME; ?>">
     <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
@@ -28,16 +28,12 @@
 
     <link rel="shortcut icon" href="images/favicon.png">
 
-    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
-    <!--
-    <link rel="canonical" href="http://www.example.com/">
-    -->
-
-
+	<!-- Pace is a simple loading bar for all pages -->
 	<link rel="stylesheet" href="css/pace.css">
 	<script src='js/pace.min.js'></script>
 
 
+	<!-- Google and MDL CSS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="<?php global $theme; echo $theme->stylesheet(); ?>">
@@ -54,7 +50,7 @@
       z-index: 900;
     }
 
-
+	
 	.pace .pace-progress {
 		background: <?php echo $theme->color_main->shade(500)->hex(); ?>
 	}

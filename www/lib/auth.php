@@ -1,17 +1,7 @@
 <?php
 
-/*
-require_once('lib/config.php');
-require_once("vendor/google-api/vendor/autoload.php")
+// Auth for users & google
 
-$client = new Google_Client();
-$client->setAuthConfig('../credentials/client_secret.json');
-//$client->addScope("https://www.googleapis.com/auth/fitness.activity.write");
-//$client->addScope("https://www.googleapis.com/auth/fitness.body.write");
-
-$redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
-$client->setRedirectUri($redirect_uri);
-*/
 
 require_once('lib/user.php');
 

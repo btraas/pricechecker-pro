@@ -1,6 +1,6 @@
 <?php
 
-# Kevin Traas :: April 9, 2010
+# Common Useful functions 
 # 
 # These are all things I want set for every web-based application I write.
 #------------------------------------------------------------------------------

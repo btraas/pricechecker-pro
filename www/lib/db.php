@@ -1,5 +1,9 @@
 <?php
 
+
+// Simplified SQL with runQ()
+
+
 $write_commands = array('UPDATE', 'DELETE', 'INSERT', 'CREATE', 'ALTER');
 
 //Function to sanitize values received from the form. Prevents SQL injection

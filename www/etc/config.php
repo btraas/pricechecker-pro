@@ -8,6 +8,8 @@ define( 'APP_MODE', 'PRICECHECKERPRO' );
 define( 'APP_NAME', 'Price Checker Pro');
 define( 'BASE_DOMAINNAME', "pricechecker.pro" );
 define( 'BASE_URL', "https://" . BASE_DOMAINNAME );
+define( 'HOMEURL',       '/' );
+
 
 date_default_timezone_set( 'America/Vancouver' );
 
@@ -27,17 +29,6 @@ if( DEBUG_MODE == 't' )
 	ini_set( "display_errors", 'On' );
 	ini_set( "display_startup_errors", 'On' );
 }
-// }}}
-
-// Application THEME settings {{{
-
-# NOTE: When installing a new theme, you must create a link from jquery-ui-???.css to jquery-ui.css
-$themes = array( 0=>'blitzer', 1=>'cupertino', 2=>'eggplant', 3=>'excite-bike', 4=>'humanity', 5=>'le-frog',
-    6=>'mint-choc', 7=>'redmond', 8=>'south-street', 9=>'start', 10=>'sunny', 11=>'ui-darkness', 12=>'ui-lightness',
-	13=>'vader', 14=>'dark-hive', 15=>'smoothness', 16=>'dot-luv', 17=>'flick', 18=>'hot-sneaks', 19=>'pepper-grinder',
-	20=>'swanky-purse', 21=>'trontastic', 22=>'llt', 23=>'devry' );
-$themeID = 23;
-$themeID_kioskMode = 14;
 // }}}
 
 // Application Log settings {{{
@@ -70,11 +61,10 @@ define( 'SMARTY_CACHE_DIR', "templates/cached" );
 // Database connection settings {{{
 $dsn = array(
 	'phptype'   => 'mysql',
-	'username'  => 'pokepush',
-	'password'  => 'PokemonGo', 
-	'hostspec'  => 'localhost',
-	'database'  => 'pokepush',
-	'newlink'	=> true
+	'host'      => 'localhost',
+    'database'  => 'pricecheckerpro',
+    'username'  => 'pricecheckerpro',
+	'password'  => 'API4beastBySuck5'
 );
 
 // }}}
