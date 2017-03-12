@@ -1,6 +1,6 @@
 <?php
 
-if(!defined(PAGE_NAME)) define("PAGE_NAME", "404: Page not found");
+if(!defined("PAGE_NAME")) define("PAGE_NAME", "404: Page not found");
 
 ?>
 
