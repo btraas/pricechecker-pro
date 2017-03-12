@@ -48,8 +48,6 @@ class MySQL  // {{{
 
 } // }}}
 
-
-
 // An initial connection & test to ensure things are working {{{ 
 try
 {
@@ -62,8 +60,6 @@ catch( PDOException $e )
 	echo "$dsn[phptype] DSN error...";
     exit();
 } // }}}
-
-
 
 function runQ($query, $params=array()) // {{{
 {

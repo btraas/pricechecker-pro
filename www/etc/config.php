@@ -1,12 +1,12 @@
 <?php
 
 // Various application settings are defined here.
-
+require_once('defines.php');
 
 // Which subset of applications to activate
 define( 'APP_MODE', 'PRICECHECKERPRO' );
 define( 'APP_NAME', 'Price Checker Pro');
-define( 'BASE_DOMAINNAME', "pricechecker.pro" );
+define( 'BASE_DOMAINNAME', DOMAIN );
 define( 'BASE_URL', "https://" . BASE_DOMAINNAME );
 define( 'HOMEURL',       '/' );
 
@@ -35,7 +35,7 @@ if( DEBUG_MODE == 't' )
 // NOTE: $loggingDefaults['owner'] must have write-access to dirname( $loggingDefaults['logfile'] )
 $loggingDefaults = array(
 	"enabled"   => true,
-	"logfile"   => "/tmp/pricecheckerpro.log",
+	"logfile"   => "/tmp/".SITENAME.".log",
 	"owner"     => "www-data",
 	"group"     => "www-data",
 	"perms"     => 0660,
@@ -65,37 +65,6 @@ $dsn = array(
     'database'  => 'pricecheckerpro',
     'username'  => 'pricecheckerpro',
 	'password'  => 'API4beastBySuck5'
-);
-
-// }}}
-
-// LDAP / AD Authentication settings {{{
-
-define( 'LDAP_ENABLED', true );
-
-define( 'AD_DOMAIN', 'DEVRY' );
-
-$authOptions = array(
-	'host'          => 'stewart',
-	'port'          => 3268,
-	'version'       => 3,
-	'referrals'     => false,
-	#   'basedn'        => 'OU=SBSUsers, OU=Users, OU=MyBusiness, DC=cheam, DC=devry, DC=local',
-	'binddn'        => "www-data@" . AD_DOMAIN,
-	'bindpw'        => "Fl0wer-P0wer",
-	'userattr'      => 'samAccountName',
-	'userfilter'    => '(ObjectClass=user)',
-	'attributes'    => array(),
-	//  'group'         => 'Users',
-	//  'groupattr'     => 'samAccountName',
-	'groupfilter'   => '(ObjectClass=group)',
-	'memberattr'    => 'member',
-	'memberisdn'    => true,
-	//  'groupdn'       => 'cn=Users',
-	'groupscope'    => 'one',
-	'debug'         => true,
-	'enableLogging' => false,           // Enable this to dump LOTS of additional stuff to log file.  Including extra LDAP fields we can use.
-	'start_tls'     => true,
 );
 
 // }}}
