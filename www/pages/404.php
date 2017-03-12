@@ -59,7 +59,7 @@ if(empty(PAGE_NAME)) define("PAGE_NAME", "404: Page not found");
 			<div class="mdl-shadow--2dp mdl-color--grey-100 mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
 			      <div class="mdl-card__supporting-text mdl-color-text--grey-600">
 					<?php	if(!empty($_404_msg)) echo $_404_msg;
-							else echo "The page you are requesting ($page) does not exist.";
+							else echo "TEST! The page you are requesting ($page) does not exist.";
 					?>
 			      </div>
 			      <div class="mdl-card__actions mdl-card--border">
