@@ -61,6 +61,10 @@ function save() // {{{
 
 function upc($upc) // {{{
 {
+
+	Global $user;
+	$user->trackUPC($upc);
+
 	Global $product_name;
 	$NOT_FOUND = '<i>Not found!</i>';
 
@@ -119,10 +123,15 @@ function upc($upc) // {{{
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch, CURLOPT_URL, $upcitemdb);
 
+	$brand_name = null;
+	$product_name = null;
+
 	if(USE_UPC_ITEM_DB) {
 		$combined = json_decode(curl_exec($ch), true);
 
 		$tmpOffers = @$combined['items'][0]['offers'];
+		$brand_name = @$combined['items'][0]['brand'];
+
 		if(empty($tmpOffers)) $tmpOffers = array();
 
 		foreach($tmpOffers AS $offer) {
@@ -132,6 +141,41 @@ function upc($upc) // {{{
 		}
 
 	}
+
+	// Tracking
+	require_once('lib/brand.php');
+	require_once('lib/product.php');
+	$brand = new Brand($brand_name);
+
+	if(!empty($brand_name) && empty(@$brand->brand_id)) 
+	{
+
+		$url = "https://company.clearbit.com/v1/companies/search?query=name:$brand_name";
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_USERPWD, "sk_49ccb54bbd533c423c436dfcd5415460:");
+		curl_setopt($ch, CURLOPT_URL, $url);
+
+		$raw_brand_data = json_decode(curl_exec($ch), true);
+		//logger($brand_data);
+
+		//echo curl_exec($ch);
+
+		$brand_data = $raw_brand_data['results'][0];
+		$domain = $brand_data['domain'];
+
+		$data = array();
+		$data['name'] = $brand_name;
+		$data['logo_url'] = "//logo.clearbit.com/$domain?size=64";
+
+		$brand->create($data);
+
+	}
+
+	//$product = new Product($)
+
 
 	//ini_set("allow_url_fopen", 1);
 	//$json = file_get_contents($walmart);
