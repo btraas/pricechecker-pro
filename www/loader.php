@@ -2,7 +2,6 @@
 
 // Entry point for most web calls.
 
-ob_start();
 
 require_once('etc/config.php');
 require_once('lib/common.php');
@@ -11,6 +10,7 @@ require_once('lib/db.php');
 require_once('lib/mdl.php');
 require_once('lib/auth.php');
 require_once('lib/app.php');
+
 
 
 //print_r(@$_REQUEST);
@@ -47,8 +47,10 @@ foreach( $no_auth AS $prefix )
 
 if(!$access_granted) 
 {
+	// redirect to login at this point.
+
 	// logger("Access Not granted. Getting google user...");
-	$user = getGoogleUser();		// Only google so far, so login with google token. 
+	//$user = getGoogleUser();		// Only google so far, so login with google token. 
 }									// Will redirect if not logged in.
 
 
