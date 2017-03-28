@@ -17,7 +17,6 @@ require_once('lib/common.php');
 
 require_once('lib/db.php');
 require_once('lib/mdl.php');
-require_once('lib/auth.php');
 require_once('lib/app.php');
 
 
