@@ -71,6 +71,19 @@
 	<script type='text/javascript' src='js/cookie.js'></script>
 	<script type='text/javascript' src='js/mdl.js'></script>
 
+	<script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyCIS7Bo1V5dzpKVqJwxPi8gDDLbT1mmDIA",
+	    authDomain: "price-checker-pro.firebaseapp.com",
+	    databaseURL: "https://price-checker-pro.firebaseio.com",
+	    storageBucket: "price-checker-pro.appspot.com",
+	    messagingSenderId: "579779341532"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<script>
   	(adsbygoogle = window.adsbygoogle || []).push({

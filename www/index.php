@@ -39,7 +39,7 @@ $page = getAlNum(@$_REQUEST['p']);
 if(empty($page))
 {
     logger("No page! loading home");
-    include("pages/home.php");
+    include("pages/lookup.php");
     exit();
 }
 
@@ -61,7 +61,6 @@ if(!$access_granted)
 
     // logger("Access Not granted. Getting google user...");
     $user = getGoogleUser();        // Only google so far, so login with google token.
-
 
 	if(empty($user)) header('/');
 
