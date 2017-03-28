@@ -23,7 +23,7 @@ require_once('lib/app.php');
 
 //print_r(@$_REQUEST);
 
-$access_granted = false;
+$access_granted = true;
 
 $no_auth = array(
                     "/home",
@@ -59,7 +59,7 @@ if(!$access_granted)
 
 
     // logger("Access Not granted. Getting google user...");
-    $user = getGoogleUser();        // Only google so far, so login with google token.
+    //$user = getGoogleUser();        // Only google so far, so login with google token.
 
 	if(empty($user)) header('/');
 
