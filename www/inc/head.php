@@ -40,7 +40,29 @@
 	<link rel="stylesheet" href="css/mtl-styles.css">
     <link rel="stylesheet" href="css/styles.css">
     <style>
-    #view-source {
+        ul.share-buttons{
+            list-style: none;
+            padding: 0;
+        }
+
+        ul.share-buttons li{
+            display: inline;
+        }
+
+        ul.share-buttons .sr-only {
+            position: absolute;
+            clip: rect(1px 1px 1px 1px);
+            clip: rect(1px, 1px, 1px, 1px);
+            padding: 0;
+            border: 0;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+        }
+        a{text-decoration: none !important;}
+
+
+        #view-source {
       position: fixed;
       display: block;
       right: 0;
@@ -70,6 +92,7 @@
 
 	<script type='text/javascript' src='js/cookie.js'></script>
 	<script type='text/javascript' src='js/mdl.js'></script>
+  
 
 	<script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
 	<script>

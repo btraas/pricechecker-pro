@@ -5,3 +5,11 @@
 .color-cards .mdl-card__title h1 {
 	font-weight: bold;
 }
+
+video {
+    left: 50%;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
