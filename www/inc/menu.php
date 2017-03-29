@@ -95,7 +95,19 @@ $.cookie('timezone', moment.tz.guess(), { expires: 7 });
 
 		function record(user) {
 			// TODO save to our db
-			
+
+			// re-arrange some data for firebase changes
+			var data = {};
+			data.email = user.email;
+			data.name = user.displayName;
+			data.picture = user.photoURL;
+			data.locale = 'en-us';
+
+			// post data to server without any return
+			$.post('index.php?p=tracking&meta=updateuser', {value: data});
+
+
+
 		}
 
 

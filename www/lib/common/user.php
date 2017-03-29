@@ -30,7 +30,7 @@ Abstract Class AbstractUser // {{{
 		$input = is_numeric($input) ? getNumeric($input) : getEmail($input);
 
 		$q = "SELECT * FROM users where $field = ?";
-		$this->data = runQ($q, array($input))[0];
+		$this->data = @runQ($q, array($input))[0];
 
 	} // }}}
 

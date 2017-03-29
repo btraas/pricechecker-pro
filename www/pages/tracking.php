@@ -1,10 +1,12 @@
 <?php
 
-// not really a page - just 
+// not really a page - just an endpoint
 
-//logger('yo');
+require_once('lib/user.php');
 
-require_once('lib/track.php');
+
+
+logger($_REQUEST);
 
 $mode = getAlNumUC(@$_REQUEST['meta']);
 
@@ -12,9 +14,21 @@ switch($mode) // {{{
 {
 
     // Choose day
-    case 'login'         : login($_REQUEST['user']);     exit();
+    case 'UPDATEUSER'         : updateUser(@$_REQUEST['value']);     exit();
 
     default         : $_404_msg = "Unable to handle mode: $mode"; include('pages/404.php');
 
 } // }}}
 
+
+function updateUser($user) {
+
+	$dbUser = new User($user['email']);
+	if(empty($dbUser->data)) {
+
+		$dbUser->create($user);
+	} else {
+		$dbUser->update($user);
+	}
+
+}
