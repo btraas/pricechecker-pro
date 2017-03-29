@@ -51,6 +51,10 @@ foreach( $no_auth AS $prefix )
 }
 
 
+session_start();
+require_once('lib/user.php');
+if(isset($_SESSION['loggedinuser'])) $user = new User($_SESSION['loggedinuser']);
+
 // if not granted so far, user must be logged in.
 
 if(!$access_granted)
@@ -60,6 +64,7 @@ if(!$access_granted)
 
     // logger("Access Not granted. Getting google user...");
     //$user = getGoogleUser();        // Only google so far, so login with google token.
+
 
 	if(empty($user)) header('/');
 

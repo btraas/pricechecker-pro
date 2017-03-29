@@ -23,12 +23,17 @@ switch($mode) // {{{
 
 function updateUser($user) {
 
+	session_start();
+
 	$dbUser = new User($user['email']);
 	if(empty($dbUser->data)) {
-
+		
 		$dbUser->create($user);
 	} else {
 		$dbUser->update($user);
 	}
+
+	$_SESSION['loggedinuser'] = $dbUser->user_id;
+
 
 }

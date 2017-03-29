@@ -18,34 +18,13 @@ $mode = getAlNumUC(@$_REQUEST['meta']);
 switch($mode) // {{{
 {
 
-	// Choose day
     case ''         : include('inc/lookup/index.php');     exit();
-
-	// Choose session (unless already set for this day, then skip)
-	//case 'NEW'		: include('inc/workout/new.php');		exit();
-
-	// Choose Exercise
-	//case 'SESSION'  : include('inc/workout/session.php');   exit();
 
 	case 'UPC'		: upc($_REQUEST['value']); exit();
 
 	case 'SCAN'		: include('inc/lookup/upc-scan.php'); exit();
 
-	case 'SAVE'     : save(); exit();
 	default			: $_404_msg = "Unable to handle mode: $mode"; include('pages/404.php');
-
-} // }}}
-
-function save() // {{{
-{
-	Global $user;
-
-	$date = date('Y-m-d', (strtotime($_REQUEST['date'])));
-	$exercises = $_REQUEST['exercises'];
-	$week = getNumeric($_REQUEST['week']);
-	$session = getNumeric($_REQUEST['session']);
-
-	if(!empty($user)) $user->log($date, $week, $session, $exercises);
 
 } // }}}
 
