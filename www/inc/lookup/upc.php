@@ -72,14 +72,7 @@
 	//print_r($results);
 	?>
 </table>
-
-
-
-
-<!-- Add spacer to push Footer down when not enough content -->
-<div class="mdl-layout-spacer" style='margin-bottom: 56px'></div>
-<?php include_once('inc/footer.php'); ?>
-
+		
       <script>
           function sortResults() {
               var table, rows, switching, i, x, y, shouldSwitch,tmp;
@@ -125,5 +118,14 @@
               }
           }
       </script>
+
+
+<!-- Add spacer to push Footer down when not enough content -->
+<div class="mdl-layout-spacer" style='margin-bottom: 56px'></div>
+
+
+<?php include_once('inc/footer.php'); ?>
+
+
 
 
