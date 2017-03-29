@@ -36,11 +36,11 @@ $.cookie('timezone', moment.tz.guess(), { expires: 7 });
 		  <div class='mdl-layout-spacer'></div>
 
           <div class="mdl-card__title demo-avatar-dropdown">
-			<img id='user-image' src="<?php echo $user->picture; ?>" class="avatar">
-            <span id='user-email' style='color: white'><?php echo $user->email; ?></span>
+			<img id='user-image' src="<?php echo @$user->picture; ?>" class="avatar">
+            <span id='user-email' style='color: white'><?php echo @$user->email; ?></span>
 		</div>
 		<div class='mdl-card__actions mdl-card--border'>
-			<a href="#" onClick='signOut()' class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--<?php echo $theme->color_main->base; ?>-50">Sign Out</a>
+			<a id='auth-btn' href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--<?php echo $theme->color_main->base; ?>-50">Sign Out</a>
 		</div>
 
         </header>
@@ -55,9 +55,12 @@ $.cookie('timezone', moment.tz.guess(), { expires: 7 });
 
 		var auth2;
 
+		firebase.auth().onAuthStateChanged(init);
+
 
 		$(document).ready(function()
 		{
+			/*
 			gapi.load('auth2', function() {
 
 				gapi.auth2.init();
@@ -65,24 +68,67 @@ $.cookie('timezone', moment.tz.guess(), { expires: 7 });
 				auth2 = gapi.auth2.getAuthInstance();
 
 			});
+			*/
+
+			init(firebase.auth().currentUser);
 		});
+	
+		function init(user) {
+			
+			$('#auth-btn').text("Sign Out").prop('onclick', null).off('click');
+
+			if(user != null) {
+				//login(user);
+				record(user);
+
+				$('#auth-btn').text("Sign Out").on('click', signOut);
+				$('#user-image').attr('src', user.photoURL);
+				$('#user-email').text(user.email);
+			} else {
+				$('#auth-btn').text("Sign In").on('click', signIn);
+				$('#user-image').attr('src', 'images/user.jpg');
+				$('#user-email').text("");
+			}
+			
+
+		}
+
+		function record(user) {
+			// TODO save to our db
+			
+		}
+
 
 
 		function signOut() {
 
 			//if(typeof gapi != Object) location.href = '/';
 
+			/*
+
 	//		var auth2 = gapi.auth2.getAuthInstance();
 			    auth2.signOut().then(function () {
 					location.href = '/';
 			});
+
+			*/
+
+			firebase.auth().signOut().then(function() {
+
+  			// Sign-out successful.
+			//	init();
+
+			}).catch(function(error) {
+			  // An error happened.
+			});
+
 		}
+	
 
-
-/*
 		function signIn()
 		{
 
+			/*
 			gapi.load('auth2', function() {
  				auth2 = gapi.auth2.init({
     				client_id: '<?php echo GOOGLE_CLIENT_ID; ?>.apps.googleusercontent.com',
@@ -107,11 +153,32 @@ $.cookie('timezone', moment.tz.guess(), { expires: 7 });
 
 					});
 			});	
+			*/
+			var provider = new firebase.auth.GoogleAuthProvider();
+			firebase.auth().signInWithPopup(provider).then(function(result) {
+		  		// This gives you a Google Access Token. You can use it to access the Google API.
+		  		var token = result.credential.accessToken;
+		  		// The signed-in user info.
+		  		var user = result.user;
+		  		
+				console.log(user);
+			//	init(user); 		// init in UI
+			
+
+				}).catch(function(error) {
+				  // Handle Errors here.
+				  var errorCode = error.code;
+				  var errorMessage = error.message;
+				  // The email of the user's account used.
+				  var email = error.email;
+				  // The firebase.auth.AuthCredential type that was used.
+				  var credential = error.credential;
+				  // ...
+				});
 
 
 		}
 	
-*/
 
 
 
