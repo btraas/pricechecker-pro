@@ -24,7 +24,7 @@
 </style>
 
 
-<table class='competitors-table mdl-data-table mdl-js-data-table mdl-shadow--2dp'>
+<table name="resultsTable" id="resultTable" class='competitors-table mdl-data-table mdl-js-data-table mdl-shadow--2dp'>
 	<select id="resultSorting" onchange="sortResults()" name="resultSorting">
         <option value="0">Price:Low to High</option>
         <option value="1">Price:High to Low</option>
