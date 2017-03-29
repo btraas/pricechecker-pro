@@ -70,7 +70,7 @@
 
 	<script type='text/javascript' src='js/cookie.js'></script>
 	<script type='text/javascript' src='js/mdl.js'></script>
-  <script type='text/javascript' src='js/sortingResults.js'></script>
+  
 
 	<script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
 	<script>
@@ -92,5 +92,7 @@
     	enable_page_level_ads: true
   	});
 	</script>
+	  
+	<script type='text/javascript' src='js/sortingResults.js'></script>
 
   </head>
