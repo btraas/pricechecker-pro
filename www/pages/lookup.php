@@ -4,22 +4,12 @@
 
 define('USE_UPC_ITEM_DB', 1);
 
-//require_once('lib/program.php');
-
 //print_r($_REQUEST); 
 
 
 $date = isset($_REQUEST['date']) ?
 	date('Y-m-d', strtotime($_REQUEST['date'])) :
 	date('Y-m-d');
-
-//$userProgram = $user->getProgram();
-//$program = empty($user->current_program) ? null : new PublicProgram($user->current_program);
-
-//$week = getNumeric(@$_REQUEST['week']);
-//$session = getNumeric(@$_REQUEST['session']);
-
-//$exercises = $userProgram->getExercises($week, $session);
 
 
 $product_name = "";
@@ -55,7 +45,7 @@ function save() // {{{
 	$week = getNumeric($_REQUEST['week']);
 	$session = getNumeric($_REQUEST['session']);
 
-	$user->log($date, $week, $session, $exercises);
+	if(!empty($user)) $user->log($date, $week, $session, $exercises);
 
 } // }}}
 
@@ -63,7 +53,7 @@ function upc($upc) // {{{
 {
 
 	Global $user;
-	$user->trackUPC($upc);
+	if(!empty($user)) $user->trackUPC($upc);
 
 	Global $product_name;
 	$NOT_FOUND = '<i>Not found!</i>';

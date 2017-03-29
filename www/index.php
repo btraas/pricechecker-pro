@@ -23,7 +23,7 @@ require_once('lib/app.php');
 
 //print_r(@$_REQUEST);
 
-$access_granted = true;
+$access_granted = true; // don't require login by default
 
 $no_auth = array(
                     "/home",
