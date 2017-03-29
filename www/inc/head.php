@@ -40,7 +40,30 @@
 	<link rel="stylesheet" href="css/mtl-styles.css">
     <link rel="stylesheet" href="css/styles.css">
     <style>
-    #view-source {
+        ul.share-buttons{
+            list-style: none;
+            padding: 0;
+        }
+        ul.share-buttons li{
+            display: inline;
+        }
+        ul.share-buttons .sr-only {
+            position: absolute;
+            clip: rect(1px 1px 1px 1px);
+            clip: rect(1px, 1px, 1px, 1px);
+            padding: 0;
+            border: 0;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+        }
+        ul.share-buttons img{
+            width: 32px;
+        }
+        a{text-decoration: none !important;}
+
+
+        #view-source {
       position: fixed;
       display: block;
       right: 0;
