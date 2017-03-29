@@ -93,6 +93,7 @@
   	});
 	</script>
 	  
+  <script>
     function sortResults() {
     var table, rows, switching, i, x, y, shouldSwitch,tmp;
     var option = document.getElementById('resultSorting').value;
@@ -136,5 +137,6 @@
         }
     }
 }
+</script>
 
   </head>
