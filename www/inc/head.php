@@ -106,7 +106,7 @@
 
         //start by saying: no switching is done:
         switching = false;
-        rows = table.getElementsByTagName("TR");
+        rows = table.getElementsByTagName("tr");
         /*Loop through all table rows (except the
          first, which contains table headers):*/
         for (i = 1; i < (rows.length - 1); i++) {
@@ -114,8 +114,8 @@
             shouldSwitch = false;
             /*Get the two elements you want to compare,
              one from current row and one from the next:*/
-            x = rows[i].getElementsByTagName("TD")[2];
-            y = rows[i + 1].getElementsByTagName("TD")[2];
+            x = rows[i].getElementsByTagName("td")[2];
+            y = rows[i + 1].getElementsByTagName("td")[2];
             //check if the two rows should switch place:
             if(parseInt(option)) {
                 tmp = x;
