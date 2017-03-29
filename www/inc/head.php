@@ -44,9 +44,11 @@
             list-style: none;
             padding: 0;
         }
+
         ul.share-buttons li{
             display: inline;
         }
+
         ul.share-buttons .sr-only {
             position: absolute;
             clip: rect(1px 1px 1px 1px);
@@ -56,9 +58,6 @@
             height: 1px;
             width: 1px;
             overflow: hidden;
-        }
-        ul.share-buttons img{
-            width: 32px;
         }
         a{text-decoration: none !important;}
 
