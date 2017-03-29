@@ -95,6 +95,7 @@ $.cookie('timezone', moment.tz.guess(), { expires: 7 });
 
 		function record(user) {
 			// TODO save to our db
+			
 		}
 
 
