@@ -48,6 +48,13 @@
 
 	$price = money_format('%i', $walmart_item['salePrice']);
 
+	/*presort the result array--ascending*/
+    function priceCmp($a, $b) {
+        return $a["price"] - $b["price"];
+    }
+    usort($offers, "priceCmp");
+    /*----------------------------------*/
+
 	foreach($offers AS $offer) {
 		//print_r($offer);
 
