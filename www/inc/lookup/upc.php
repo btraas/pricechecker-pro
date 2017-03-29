@@ -28,14 +28,15 @@
 	<select id="resultSorting" onchange="sortResults()" name="resultSorting">
         <option value="0">Price:Low to High</option>
         <option value="1">Price:High to Low</option>
-    	<thead>
+    	
     </select>
+    <thead>
             <tr>
                 <th class='mdl-data-table__cell--non-numeric'>Retailer</th>
                 <th class='mdl-data-table__cell--non-numeric'>Name</th>
                 <th>Unit price</th>
             </tr>
-        </thead>
+    </thead>
 
 	<?php
 
