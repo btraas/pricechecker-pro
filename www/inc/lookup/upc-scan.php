@@ -95,6 +95,7 @@ $(document).ready(function(){
               });
               camIds.reverse(); 
               currentIdIndex = camIds.length - 1;
+              console.log(camIds.toString());
               console.log(currentIdIndex);
               openCamera();
 
