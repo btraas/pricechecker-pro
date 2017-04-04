@@ -3,7 +3,21 @@
 <script src='js/quagga.min.js'></script>
 <script>
 
+mode = "user";
+
+function switchMode() {
+    if(mode  == "environment") {
+        mode = "user";
+    }else if(mode == "user") {
+        mode = "environment";
+    }
+    /*console.log(mode);*/
+
+
+}
+
 function openCamera() {
+    switchMode();
 
     if (!navigator.mediaDevices
         || typeof navigator.mediaDevices.getUserMedia !== 'function') {
@@ -19,7 +33,7 @@ function openCamera() {
       name : "Live",
       type : "LiveStream",
       constraints:{  },
-      facingMode: "environment",
+      facingMode: mode,
       debug: {
         drawBoundingBox: true,
         showFrequency: false,
@@ -66,6 +80,11 @@ $(document).ready(function(){ openCamera(); });
         <div style='top: 50%; left: 30%; width: 40%; height: 2px; background: red; position: fixed;  z-index: -500'></div>
     </div>
 <!--</div>-->
+    <button style="display: block;
+        margin-left: auto;
+        margin-right: auto" class="mdl-button--fab mdl-button mdl-js-button  mdl-button--raised mdl-button--accent mdl-button--raised" onclick="openCamera()"  id="camFlip">
+        Flip
+    </button>
      
 
 
