@@ -5,8 +5,7 @@
 
 mode = "user";
 camIds = new Array();
-currentId;
-currentIdIndex;
+
 
 
 
@@ -80,6 +79,9 @@ function openCamera() {
 }
 
 $(document).ready(function(){ 
+
+              currentId;
+              currentIdIndex;
 
               navigator.mediaDevices.enumerateDevices()
               .then(function(devices) {
