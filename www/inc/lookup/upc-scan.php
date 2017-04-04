@@ -34,9 +34,10 @@ function openCamera() {
     inputStream : {
       name : "Live",
       type : "LiveStream",
-      constraints:{  },
+      constraints:{  
       //facingMode: mode,
       deviceId: currentId,
+      },
       debug: {
         drawBoundingBox: true,
         showFrequency: false,
