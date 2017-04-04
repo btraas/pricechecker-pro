@@ -88,16 +88,19 @@ $(document).ready(function(){
                   if(device.kind == "videoinput") {
                     camIds.push(device.deviceId);
                   }
+                  
                 });
+                  camIds.reverse(); 
+                  currentIdIndex = camIds.length - 1;
+                  console.log(camIds.toString());
+                  console.log(currentIdIndex);
+                  openCamera();
               })
               .catch(function(err) {
                 console.log(err.name + ": " + err.message);
               });
-              camIds.reverse(); 
-              currentIdIndex = camIds.length - 1;
-              console.log(camIds.toString());
-              console.log(currentIdIndex);
-              openCamera();
+              
+              
 
 
             });
