@@ -8,11 +8,14 @@ camIds = new Array();
 currentIdIndex = 0;
 currentId = ""
 
-
-
-
 function switchMode() {
-  currentIdIndex = (currentIdIndex+1)%camIds.length;
+    if(mode  == "environment") {
+        mode = "user";
+    }else if(mode == "user") {
+        mode = "environment";
+    }
+    /*console.log(mode);*/
+ // currentIdIndex = (currentIdIndex+1)%camIds.length;
 }
 
 function openCamera() {
@@ -35,6 +38,7 @@ function openCamera() {
       name : "Live",
       type : "LiveStream",
       constraints:{  
+
       facingMode: mode,
       //deviceId: currentId,
       },
@@ -58,8 +62,6 @@ function openCamera() {
       Quagga.start();
   });
 
-    alert(currentId);
-
 
     Quagga.onDetected(function(result)
     {
@@ -80,7 +82,7 @@ $(document).ready(function(){
               //currentId;
               //currentIdIndex;
 
-              navigator.mediaDevices.enumerateDevices()
+/*              navigator.mediaDevices.enumerateDevices()
               .then(function(devices) {
                 devices.forEach(function(device) {
                   console.log(device.kind + ": " + device.label +
@@ -95,11 +97,13 @@ $(document).ready(function(){
                   currentIdIndex = camIds.length - 1;
                   console.log(camIds.toString());
                   console.log(currentIdIndex);
-                  openCamera();
+                  
               })
               .catch(function(err) {
                 console.log(err.name + ": " + err.message);
-              });
+              });*/
+
+              openCamera();
               
               
 
