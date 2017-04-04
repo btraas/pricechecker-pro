@@ -18,6 +18,7 @@ function switchMode() {
 
 function openCamera() {
     switchMode();
+    console.log(mode);
 
     if (!navigator.mediaDevices
         || typeof navigator.mediaDevices.getUserMedia !== 'function') {
