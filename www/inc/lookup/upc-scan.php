@@ -34,7 +34,7 @@ function openCamera() {
       return;
     }
 
-    currentId = String(camIds[currentIdIndex]);
+    currentId = camIds[currentIdIndex];
 
     $('#yourElement, #yourElement div').css('z-index', 500);
 
