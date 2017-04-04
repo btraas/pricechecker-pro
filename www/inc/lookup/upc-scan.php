@@ -5,6 +5,8 @@
 
 mode = "user";
 camIds = new Array();
+currentIdIndex = 0;
+currentId = ""
 
 
 
@@ -90,15 +92,15 @@ $(document).ready(function(){
                               " id = " + device.deviceId);
                       //store ids
                   if(device.kind == "videoinput") {
-                    //camIds.push(device.deviceId);
+                    camIds.push(device.deviceId);
                   }
                 });
               })
               .catch(function(err) {
                 console.log(err.name + ": " + err.message);
               });
-              //camIds.reverse(); 
-              //currentIdIndex = camIds.length - 1;
+              camIds.reverse(); 
+              currentIdIndex = camIds.length - 1;
               openCamera();
 
 
