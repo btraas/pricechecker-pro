@@ -4,8 +4,14 @@
 <script>
 
 mode = "user";
+camIds = new Array();
+currentId;
+currentIdIndex;
+
+
 
 function switchMode() {
+  currentIdIndex = (currentIdIndex+1)%camIds.length;
     if(mode  == "environment") {
         mode = "user";
     }else if(mode == "user") {
@@ -27,6 +33,8 @@ function openCamera() {
       return;
     }
 
+    currentId = String(camIds[currentIdIndex]);
+
     $('#yourElement, #yourElement div').css('z-index', 500);
 
     Quagga.init({
@@ -35,6 +43,7 @@ function openCamera() {
       type : "LiveStream",
       constraints:{  },
       facingMode: mode,
+      deviceId: currentId,
       debug: {
         drawBoundingBox: true,
         showFrequency: false,
@@ -70,7 +79,30 @@ function openCamera() {
 
 }
 
-$(document).ready(function(){ openCamera(); });
+$(document).ready(function(){ 
+
+              navigator.mediaDevices.enumerateDevices()
+              .then(function(devices) {
+                devices.forEach(function(device) {
+                  console.log(device.kind + ": " + device.label +
+                              " id = " + device.deviceId);
+                      //store ids
+                  if(device.kind == "videoinput") {
+                    camIds.push(device.deviceId);
+                  }
+                });
+              })
+              .catch(function(err) {
+                console.log(err.name + ": " + err.message);
+              });
+              camIds.reverse(); 
+              currentIdIndex = camIds.length - 1;
+              openCamera();
+
+
+            });
+              
+              
 
 </script>
      
