@@ -43,7 +43,7 @@ function openCamera() {
       name : "Live",
       type : "LiveStream",
       constraints:{  },
-      facingMode: mode,
+      //facingMode: mode,
       deviceId: currentId,
       debug: {
         drawBoundingBox: true,
@@ -64,6 +64,8 @@ function openCamera() {
       console.log("Initialization finished. Ready to start");
       Quagga.start();
   });
+
+    alert(currentId);
 
 
     Quagga.onDetected(function(result)
