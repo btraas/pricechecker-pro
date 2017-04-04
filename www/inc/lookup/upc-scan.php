@@ -82,8 +82,8 @@ $(document).ready(function(){
               navigator.mediaDevices.enumerateDevices()
               .then(function(devices) {
                 devices.forEach(function(device) {
-                  //console.log(device.kind + ": " + device.label +
-                              //" id = " + device.deviceId);
+                  console.log(device.kind + ": " + device.label +
+                              " id = " + device.deviceId);
                       //store ids
                   if(device.kind == "videoinput") {
                     camIds.push(device.deviceId);
