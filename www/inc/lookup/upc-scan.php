@@ -82,7 +82,8 @@ $(document).ready(function(){ openCamera(); });
 <!--</div>-->
     <button style="display: block;
         margin-left: auto;
-        margin-right: auto" class="mdl-button--fab mdl-button mdl-js-button  mdl-button--raised mdl-button--accent mdl-button--raised" onclick="openCamera()"  id="camFlip">
+        margin-right: auto;
+        z-index:1000;" class="mdl-button--fab mdl-button mdl-js-button  mdl-button--raised mdl-button--accent mdl-button--raised" onclick="openCamera()"  id="camFlip">
         Flip
     </button>
      
