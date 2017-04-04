@@ -29,7 +29,7 @@ function openCamera() {
       return;
     }
 
-    currentId = camIds[currentIdIndex].toString().trim();
+    //currentId = camIds[currentIdIndex].toString().trim();
 
     $('#yourElement, #yourElement div').css('z-index', 500);
 
