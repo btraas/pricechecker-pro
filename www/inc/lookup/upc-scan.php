@@ -13,19 +13,11 @@ currentId = ""
 
 function switchMode() {
   currentIdIndex = (currentIdIndex+1)%camIds.length;
-    if(mode  == "environment") {
-        mode = "user";
-    }else if(mode == "user") {
-        mode = "environment";
-    }
-    /*console.log(mode);*/
-
-
 }
 
 function openCamera() {
     switchMode();
-    console.log(mode);
+    //console.log(mode);
 
     if (!navigator.mediaDevices
         || typeof navigator.mediaDevices.getUserMedia !== 'function') {
@@ -90,8 +82,8 @@ $(document).ready(function(){
               navigator.mediaDevices.enumerateDevices()
               .then(function(devices) {
                 devices.forEach(function(device) {
-                  console.log(device.kind + ": " + device.label +
-                              " id = " + device.deviceId);
+                  //console.log(device.kind + ": " + device.label +
+                              //" id = " + device.deviceId);
                       //store ids
                   if(device.kind == "videoinput") {
                     camIds.push(device.deviceId);
@@ -103,6 +95,7 @@ $(document).ready(function(){
               });
               camIds.reverse(); 
               currentIdIndex = camIds.length - 1;
+              console.log(currentIdIndex);
               openCamera();
 
 
