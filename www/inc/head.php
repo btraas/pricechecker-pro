@@ -46,7 +46,8 @@
         }
 
         ul.share-buttons li{
-            display: inline;
+            display:block;
+            float:left;
         }
 
         ul.share-buttons .sr-only {
