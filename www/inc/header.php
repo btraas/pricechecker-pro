@@ -40,4 +40,4 @@
       </header>
 	  <?php include('inc/menu.php'); ?>
       <main class="mdl-layout__content mdl-color--grey-100 height: 100%;">
-		<div id='maincontent' style='margin: 10px;'>
+		<div id='maincontent' style='margin: 0 auto; display: table;'>

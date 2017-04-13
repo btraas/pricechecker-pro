@@ -7,7 +7,7 @@ require_once('lib/mdl.php');
 
 // Defined colors for theme
 $color_main     = new MDL\Color('blue-grey');
-$color_accent   = new MDL\Color('teal');
+$color_accent   = new MDL\Color('blue');
 
 // Define theme
 $theme = new MDL\Theme($color_main, $color_accent);

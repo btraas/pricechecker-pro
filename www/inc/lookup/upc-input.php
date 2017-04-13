@@ -9,12 +9,19 @@ $(document).ready(function()
 
 </script>
 
-<h2>Enter UPC</h2>
 
-
-<table><tr>
+<!--<table><tr>-->
 <?php
 
+$camera = new MDL\FabButton('cam');
+$camera->icon = 'camera_alt';
+$camera->onclick = "location.href = 'lookup/scan'";
+$camera->addClass('mdl-button--mini-fab');
+$camera->style = "position: fixed; left: 10px";
+//echo "<td>".$camera->html."</td>";
+
+$pre = $camera->html;
+include('upc-textinput.php');
 
 
 $input = new MDL\NumberInput('lookup-number');
@@ -22,24 +29,18 @@ $input = new MDL\NumberInput('lookup-number');
 $input->value		= @$_GET['value'];
 $input->style		= "width: 100%;";
 $input->onkeyup		= "if (event.keyCode == 13) $('#go').click()";
-echo "<td>".$input->html."</td>";
-
-$camera = new MDL\FabButton('cam');
-$camera->icon = 'camera_alt';
-$camera->onclick = "location.href = 'lookup/scan'";
-echo "<td>".$camera->html."</td>";
-
-echo "</tr></table>\n";
+//echo "<td>".$input->html."</td>";
 
 $btn = new MDL\Button('go');
 $btn->text = "Go";
 $btn->onclick = "location.href = 'lookup/upc/' + $('#lookup-number').val()";
+//echo "<td>".$btn->html."</td>";
 
-echo $btn->html;
+echo "</tr></table>\n";
 
-echo "<br>\n";
+//echo "<br>\n";
 
 ?>
 
-<div id='result'></div>
+<div id='result' style="margin-top: 80px"></div>
 

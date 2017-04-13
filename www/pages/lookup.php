@@ -20,9 +20,9 @@ switch($mode) // {{{
 
     case ''         : include('inc/lookup/index.php');     exit();
 
-	case 'UPC'		: upc($_REQUEST['value']); exit();
+    case 'UPC'		: if(checkIsProduct($_REQUEST['value'])) {searchByName($_REQUEST['value']);} else upc($_REQUEST['value']);include('inc/lookup/upc.php'); exit();
 
-	case 'SCAN'		: include('inc/lookup/upc-scan.php'); exit();
+    case 'SCAN'		: include('inc/lookup/upc-scan.php'); exit();
 
 	default			: $_404_msg = "Unable to handle mode: $mode"; include('pages/404.php');
 
@@ -157,6 +157,45 @@ function upc($upc) // {{{
 
 
 } // }}}}
+
+function searchByName($input) {
+    $upcitemdb = "https://api.upcitemdb.com/prod/trial/search?s=$input&match_mode=0&type=product";	$ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, $upcitemdb);
+
+    $brand_name = null;
+    $product_name = null;
+
+    if(USE_UPC_ITEM_DB) {
+        $combined = json_decode(curl_exec($ch), true);
+
+        $tmpOffers = @$combined['items'][0]['offers'];
+        $brand_name = @$combined['items'][0]['brand'];
+
+        if(empty($tmpOffers)) $tmpOffers = array();
+
+        foreach($tmpOffers AS $offer) {
+            /*$offer['price'] = money_format('%i', $offer['price']);*/
+            if($offer['domain'] != 'walmart.com') $offers[] = $offer;
+
+        }
+
+    }
+
+    include('inc/lookup/upc.php');
+
+
+
+}
+
+function checkIsProduct($input) {
+    if(preg_match("/[a-z]/i", $input)){
+        return true;
+    }
+    return false;
+}
+
 
 ?>
 

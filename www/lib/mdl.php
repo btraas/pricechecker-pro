@@ -97,6 +97,11 @@ Class Theme  // {{{
 
 } // }}}
 
+
+/**
+ * @property mixed html
+ * @property string style
+ */
 Abstract Class Element  // {{{
 {
 	/* public $id; */
@@ -157,6 +162,11 @@ EOF;
 
 
 } // }}}
+
+/**
+ * @property string onclick
+ * @property mixed html
+ */
 Class Button extends Element // {{{
 {
 	public $icon;
@@ -197,6 +207,9 @@ EOF;
 } // }}} 
 
 
+/**
+ * @property string onclick
+ */
 Class FabButton extends Button // {{{
 {
 	public function __construct($id) // {{{
@@ -212,11 +225,13 @@ Class FabButton extends Button // {{{
 
 } // }}}
 
-Abstract Class Input extends Element // {{{
+Class Input extends Element // {{{
 {
+	public $style;
 	//protected $pattern;
 	public $input_error;
-	
+	public $raw_html = false;
+
 	public $before;
 	public $after;
 
@@ -233,15 +248,14 @@ Abstract Class Input extends Element // {{{
 		return parent::getClass() . " mdl-textfield__input";
 	} // }}}
 
-	protected function generate() 
-	{
-		$class = $this->getClass();
 
-		return <<<EOF
+	protected function raw() {
 
-<table style='display: inline-block'><tr>
-	<td>$this->before</td>
-	<td><div class='mdl-textfield mdl-js-textfield' style='$this->style'>
+        $class = $this->getClass();
+
+
+        return <<<EOF
+ <div class='mdl-textfield mdl-js-textfield' style='$this->style'>
 		<input class='$class' 
 			{$this->attr()}
 			>		
@@ -250,7 +264,19 @@ Abstract Class Input extends Element // {{{
 			for='$this->id'>$this->placeholder</label>
 		<span class='mdl-textfield__error'>$this->input_error</span>
 
-	</div></td>
+	</div>
+EOF;
+	}
+	
+	protected function generate() 
+	{
+		if($this->raw_html) return $this->raw();
+		
+		return <<<EOF
+
+<table class="php-mdl-input" style='display: inline-block'><tr>
+	<td>$this->before</td>
+	<td>{$this->raw()}</td>
 	<td>$this->after</td>
 </tr></table>
 
@@ -258,6 +284,12 @@ EOF;
 	}
 
 } //  }}}
+
+/**
+ * @property mixed value
+ * @property string onkeyup
+ * @property string style
+ */
 Class NumberInput extends Input // {{{
 {
 
@@ -268,7 +300,7 @@ Class NumberInput extends Input // {{{
 		$this->pattern				= "-?[0-9]*(\.[0-9]+)?";
 		//$this->attrplaceholder		= "Number...";
 		$this->input_error			= "Not a number!";
-		$this->style				= "width: 50px";
+		//$this->style				= "width: 50px";
 	} 
 } // }}}
 

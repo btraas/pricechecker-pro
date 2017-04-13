@@ -4,7 +4,7 @@
 <script>
 
 mode = "user";
-camIds = new Array();
+camIds = [];
 currentIdIndex = 0;
 currentId = ""
 
@@ -37,11 +37,10 @@ function openCamera() {
     inputStream : {
       name : "Live",
       type : "LiveStream",
-      constraints:{  
-
+      constraints:{ 
       facingMode: mode,
       //deviceId: currentId,
-      },
+      }
       debug: {
         drawBoundingBox: true,
         showFrequency: false,
@@ -79,41 +78,37 @@ function openCamera() {
 
 $(document).ready(function(){ 
 
-              //currentId;
-              //currentIdIndex;
-
-/*              navigator.mediaDevices.enumerateDevices()
-              .then(function(devices) {
-                devices.forEach(function(device) {
-                  console.log(device.kind + ": " + device.label +
-                              " id = " + device.deviceId);
-                      //store ids
-                  if(device.kind == "videoinput") {
-                    camIds.push(device.deviceId);
-                  }
-                  
-                });
-                  camIds.reverse(); 
-                  currentIdIndex = camIds.length - 1;
-                  console.log(camIds.toString());
-                  console.log(currentIdIndex);
-                  
-              })
-              .catch(function(err) {
-                console.log(err.name + ": " + err.message);
-              });*/
-
               openCamera();
-              
-              
-
 
             });
               
               
 
 </script>
-     
+
+
+    <!--
+    <div class="mdl-textfield mdl-js-textfield has-placeholder"  >
+        <input class="mdl-textfield--full-width  mdl-textfield__input" id="lookup-number" placeholder="" type="number" pattern="-?[0-9]*(\.[0-9]+)?" style="" value="" onkeyup="if (event.keyCode == 13) $('#go').click()">
+
+        <label class="mdl-textfield__label" for="lookup-number"></label>
+        <span class="mdl-textfield__error">Not a number!</span>
+
+    </div>
+    -->
+    <!--<div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2">
+        <label class="mdl-textfield__label" for="sample2">Number...</label>
+        <span class="mdl-textfield__error">Input is not a number!</span>
+    </div>-->
+
+
+
+    <?php include('upc-textinput.php'); ?>
+
+
+
+
 
 <!--<div id='aboveElement'  style='position: fixed; left: 0; z-index: 50; width: 100%; height: 100%; opacity: 0.5;'
                         class='mdl-color--grey-100'>-->
@@ -121,15 +116,29 @@ $(document).ready(function(){
         <div style='top: 50%; left: 30%; width: 40%; height: 2px; background: red; position: fixed;  z-index: -500'></div>
     </div>
 <!--</div>-->
-    <button style="display: block;
+
+   <!-- <button style="display: block;
         margin-left: auto;
         margin-right: auto;
         z-index:1000;" class="mdl-button--fab mdl-button mdl-js-button  mdl-button--raised mdl-button--accent mdl-button--raised" onclick="openCamera()"  id="camFlip">
-        Flip
-    </button>
+        <i class="material-icons">switch_camera</i>
+    </button>-->
      
 
 
 <!-- Add spacer to push Footer down when not enough content -->
 <div class="mdl-layout-spacer" style='margin-bottom: 56px'></div>
+        <?php
+        $btn = new MDL\FabButton('camFlip');
+        $btn->text = "<i class=\"material-icons\">switch_camera</i>";
+        $btn->style = "     position: fixed;
+                            right: 25px;
+                            bottom: 85px;
+                            z-index: 1000";
+        $btn->onclick = "openCamera()";
+        //echo "<td>".$btn->html."</td>";
+
+        //echo "</tr></table>\n";
+        $FAB = $btn->html;
+        ?>
 <?php include_once('inc/footer.php'); ?>
