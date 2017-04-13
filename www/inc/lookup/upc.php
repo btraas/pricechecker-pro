@@ -58,7 +58,7 @@
 	foreach($offers AS $offer) {
 		//print_r($offer);
 
-		if(empty($offer['price']) || empty($offer['title'])) continue;
+		if(empty($offer['price']) || empty(intval($offer['price']))|| empty($offer['title'])) continue;
 		if(empty($offer['logo'])) $offer['logo'] = "//logo.clearbit.com/$offer[domain]?size=64";
 
 		echo "<tr>
